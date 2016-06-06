@@ -1,0 +1,11 @@
+main: com.moosecanoes.levelup.Main
+name: LevelUp
+version: 1.0
+author: MooseCanoes
+description: LevelUp your character for doing in game activities!
+commands:
+  levelup:
+    description: An example command
+    usage: /levelup
+    permission: levelup.levelup
+    permission-message: You don't have the levelup permission!
