@@ -3,9 +3,18 @@ name: LevelUp
 version: 1.0
 author: MooseCanoes
 description: LevelUp your character for doing in game activities!
+depend: [Vault]
+softdepend: [HeadHunter]
 commands:
   levelup:
     description: An example command
     usage: /levelup
     permission: levelup.levelup
     permission-message: You don't have the levelup permission!
+    default: true
+  prestige:
+    descripton: Trade in your levels for a rank.
+    usage: /prestige
+    permission: levelup.prestige
+    permission-message: You don't have permission to prestige!
+    default: true

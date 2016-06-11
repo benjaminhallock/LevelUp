@@ -1,0 +1,18 @@
+options:
+  xpForEachLevel: 2000
+  allowPrestige: true
+  levelsOfPrestige: 3  
+  restrictChat: true
+  restrcitChatLevel: 2
+  restrictBuild: true 
+  restrictBuildLevel: 2
+  rewardXPForTime: true
+  rewardXPPerHour: 10
+  rewardXPForBuilding: true
+  rewardXPPerBuild: 3
+  
+  headhunter: true
+  allowMiningAnySpawner: true
+  allowPlacingAnySpawner: true
+  allowSellingAnyHead: true  
+  

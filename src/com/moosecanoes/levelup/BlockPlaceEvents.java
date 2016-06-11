@@ -2,6 +2,7 @@ package com.moosecanoes.levelup;
 
 import java.util.logging.Logger;
 
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,8 +16,13 @@ import org.bukkit.event.player.PlayerExpChangeEvent;
 import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
-
+import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerChatEvent;
+import org.bukkit.block.Chest;
+import org.bukkit.material.Bed;
 import net.milkbowl.vault.economy.EconomyResponse;
+
+import com.moosecanoes.levelup.EventSellHeads;
 
 public class BlockPlaceEvents implements Listener 
 {
@@ -27,6 +33,25 @@ public class BlockPlaceEvents implements Listener
     public BlockPlaceEvents(Main instance) {
         this.plugin = instance;
     }  
+    
+    @EventHandler
+    public void onPlayerChat(PlayerChatEvent e)
+    {	
+    	if (e.getPlayer().getLevel() < 5)
+    	{
+    		e.getPlayer().sendMessage("You can't chat until level 5!");
+    		EventSellHeads sell = new EventSellHeads();
+    		plugin.getServer().getPluginManager().callEvent(sell);
+    		e.setCancelled(true);
+    	}
+    }
+    
+    @EventHandler
+    public void onEventSell (EventSellHeads e)
+    {
+    	log.info("PLayer sold heads");
+    }
+    
     
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event)
@@ -66,7 +91,10 @@ public class BlockPlaceEvents implements Listener
     
   @EventHandler
   public void onBlockPlace(BlockPlaceEvent e) 
-  {	      
+  {	  
+      EventSellHeads event = new EventSellHeads();
+      plugin.getServer().getPluginManager().callEvent(event);
+	  
       ItemStack is = e.getPlayer().getItemOnCursor();
       Player plr = e.getPlayer();
 //      if (!Config.denySpawnerPlacement || is.getType() != Material.MOB_SPAWNER || plr.hasPermission("headrankup.anyspawner")) {
